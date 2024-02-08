@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 //Console.WriteLine("Hello, World!");
 
+using System.Collections;
+using System.Runtime.Intrinsics.Arm;
+
 string cedula = "";
 string nombre = "";
 int tipoempleado = 0;
@@ -21,8 +24,10 @@ double promsalnetope = 0;
 double promsalnettec = 0;
 double promsalnetprof = 0;
 int respuesta = 0;
-
-
+//int 
+ArrayList names = new ArrayList();
+ArrayList id = new ArrayList();
+ArrayList type = new ArrayList();
 
 do
 {
@@ -32,10 +37,13 @@ do
     Console.WriteLine("Bienvendido al programa de aumentos salariales de Tienda la Baratica SA");
     Console.WriteLine("Digite su numero de cedula (sin guiones ni espacios): ");
     cedula = Console.ReadLine();
+    id.Add(cedula);
     Console.WriteLine("Digite su nombre completo: ");
     nombre = Console.ReadLine();
+    names.Add(nombre);
     Console.WriteLine("Digite su tipo de empleado: (1-Operario 2-Tecnico 3-Profesional)");
     tipoempleado = int.Parse(Console.ReadLine());
+    type.Add(tipoempleado);
     if (tipoempleado == 1)
     {
         Console.ForegroundColor = ConsoleColor.Green;
@@ -93,17 +101,36 @@ do
         respuesta = int.Parse(Console.ReadLine());
 
     }
-
 } while (tipoempleado < 1 || tipoempleado > 3 || respuesta == 1);
+Console.WriteLine("");
+Console.WriteLine("");
+Console.WriteLine("");
 Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine("La cantidad de empleados de tipo operarios fue de {0}", cantoper);
 Console.WriteLine("El acumulado del salario neto de los operarios consultados es de {0}", totalacuop);
-Console.WriteLine("El promedio del salario neto de los operarios es de {0}", promsalnetope = totalacuop / cantoper);
+Console.WriteLine("El promedio del salario neto de los operarios es de {0}", promsalnetope = totalacuop/cantoper);
+Console.WriteLine("-------------------------------------------------------------------------------------------------");
+Console.WriteLine("");
+Console.WriteLine("");
 Console.ForegroundColor = ConsoleColor.Blue;
 Console.WriteLine("La cantidad de empleados de tipo tecnicos fue de {0}", canttec);
 Console.WriteLine("El acumulado del salario neto de los tecnicos consultados es de {0}", totalacutec);
 Console.WriteLine("El promedio del salario neto de los Tecnicos es de {0}", promsalnettec = totalacutec / canttec);
+Console.WriteLine("-------------------------------------------------------------------------------------------------");
+Console.WriteLine("");
+Console.WriteLine("");
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine("La cantidad de empleados de tipo profesionales fue de {0}", cantprof);
 Console.WriteLine("El acumulado del salario neto de los profesionales consultados es de {0}", totalacuprof);
 Console.WriteLine("El promedio del salario neto de los profesionales es de {0}", promsalnetprof = totalacuprof / cantprof);
+Console.WriteLine("-------------------------------------------------------------------------------------------------");
+Console.WriteLine("");
+Console.WriteLine("");
+Console.WriteLine("Estos fueron los nombres de los usuarios consultados junto con su cedula y tipo de empleado: ");
+Console.WriteLine("");
+Console.WriteLine("");
+for (int i = 0; i < names.Count; i++)
+{
+    Console.WriteLine($"Nombre: {names[i]}, numero de cedula: {id[i]}, tipo de empleado: {type[i]}");
+    Console.WriteLine("");
+}
